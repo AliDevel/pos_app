@@ -296,6 +296,7 @@ export default {
       }
     },
     enter_event() {
+
       var this$1 = this;
 
         if (!this.filtred_items.length || !this.first_search) {
@@ -391,7 +392,7 @@ export default {
       });}
     },
     update_cur_items_details() {
-      this.update_items_details(this.filtred_items);
+     this.update_items_details(this.filtred_items);
     },
     scan_barcoud() {
          var vm = this;

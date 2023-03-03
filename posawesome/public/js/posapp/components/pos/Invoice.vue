@@ -242,6 +242,7 @@
                       type="number"
                       @change="calc_sotck_gty(item, $event)"
                       :disabled="!!item.posa_is_offer || !!item.posa_is_replace"
+                       ref="quantity"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="4">
@@ -1668,6 +1669,13 @@ export default {
         this.expanded.push(this.items[0]);
       }
     },
+     shortAddFirstItem(e) {
+      if (e.key === 'a' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        this.expanded = [];
+        this.expanded.push(this.items[0]);
+      }
+    },
 
     shortSelectDiscount(e) {
       if (e.key === 'z' && (e.ctrlKey || e.metaKey)) {
@@ -2533,6 +2541,7 @@ export default {
     document.addEventListener('keydown', this.shortDeleteFirstItem.bind(this));
     document.addEventListener('keydown', this.shortOpenFirstItem.bind(this));
     document.addEventListener('keydown', this.shortSelectDiscount.bind(this));
+
   },
   destroyed() {
     document.removeEventListener('keydown', this.shortOpenPayment);
@@ -2550,11 +2559,12 @@ export default {
     customer_info() {
       evntBus.$emit('set_customer_info_to_edit', this.customer_info);
     },
+    //03.03 Disabled updating item data during expanding
     expanded(data_value) {
-      this.update_items_details(data_value);
-      if (data_value.length > 0) {
-        this.update_item_detail(data_value[0]);
-      }
+      //this.update_items_details(data_value);
+      //if (data_value.length > 0) {
+       // this.update_item_detail(data_value[0]);
+      //}
     },
     discount_percentage_offer_name() {
       evntBus.$emit('update_discount_percentage_offer_name', {
