@@ -1649,7 +1649,7 @@ export default {
     },
 
     shortOpenPayment(e) {
-      if (e.key === 's' && (e.ctrlKey || e.metaKey)) {
+      if (e.ctrlKey  ) {
         e.preventDefault();
         this.show_payment();
       }
@@ -1663,19 +1663,28 @@ export default {
     },
 
     shortOpenFirstItem(e) {
-      if (e.key === 'a' && (e.ctrlKey || e.metaKey)) {
+      if (e.key === 'Enter') {
         e.preventDefault();
+        if (this.expanded[0]){
+           this.$refs.quantity.focus();
+
+        }
+        else {
         this.expanded = [];
         this.expanded.push(this.items[0]);
-      }
+     }
+     }
     },
-     shortAddFirstItem(e) {
-      if (e.key === 'a' && (e.ctrlKey || e.metaKey)) {
+   
+    shortCloseFirstItem(e) {
+      if (e.key === 'Shift') {
         e.preventDefault();
         this.expanded = [];
-        this.expanded.push(this.items[0]);
+        
       }
     },
+   
+    
 
     shortSelectDiscount(e) {
       if (e.key === 'z' && (e.ctrlKey || e.metaKey)) {
@@ -2540,6 +2549,7 @@ export default {
     document.addEventListener('keydown', this.shortOpenPayment.bind(this));
     document.addEventListener('keydown', this.shortDeleteFirstItem.bind(this));
     document.addEventListener('keydown', this.shortOpenFirstItem.bind(this));
+     document.addEventListener('keydown', this.shortCloseFirstItem.bind(this));
     document.addEventListener('keydown', this.shortSelectDiscount.bind(this));
 
   },
@@ -2547,6 +2557,7 @@ export default {
     document.removeEventListener('keydown', this.shortOpenPayment);
     document.removeEventListener('keydown', this.shortDeleteFirstItem);
     document.removeEventListener('keydown', this.shortOpenFirstItem);
+    document.removeEventListener('keydown', this.shortCloseFirstItem);
     document.removeEventListener('keydown', this.shortSelectDiscount);
   },
   watch: {
