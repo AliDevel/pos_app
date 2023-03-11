@@ -900,7 +900,7 @@ export default {
         .replace(/\d(?=(\d{3})+\.)/g, '$&,');
     },
     shortPay(e) {
-      if (e.key === ' ') {
+      if (e.key === ' ' && e.ctrlKey) {
         e.preventDefault();
         this.submit();
       }
