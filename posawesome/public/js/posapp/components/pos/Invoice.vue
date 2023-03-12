@@ -1663,10 +1663,10 @@ export default {
     },
 
     shortOpenFirstItem(e) {
-      if (e.key === 'Enter') {
+      if (e.key === 'Shift') {
         e.preventDefault();
         if (this.expanded[0]){
-           this.$refs.quantity.focus();
+            this.expanded = [];
 
         }
         else {
@@ -1677,9 +1677,9 @@ export default {
     },
    
     shortCloseFirstItem(e) {
-      if (e.key === 'Shift') {
+      if (e.key === 'Enter') {
         e.preventDefault();
-        this.expanded = [];
+        this.$refs.quantity.focus();
         
       }
     },
